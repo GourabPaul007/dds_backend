@@ -8,14 +8,14 @@ class DiabetesService:
     def checkDiabetes(self, data_dict):
         try:
             # Get data
-            age = float(data_dict.get("Age"))
-            pregnancies = float(data_dict.get("Pregnancies"))
-            glucose = float(data_dict.get("Glucose"))
-            bloodPressure = float(data_dict.get("BloodPressure"))
-            skinThickness = float(data_dict.get("SkinThickness"))
-            insulin = float(data_dict.get("Insulin"))
-            bmi = float(data_dict.get("BMI"))
-            diabetesPedigreeFunction = float(data_dict.get("DiabetesPedigreeFunction"))
+            age = float(data_dict.get("age"))
+            pregnancies = float(data_dict.get("pregnancies"))
+            glucose = float(data_dict.get("glucose"))
+            bloodPressure = float(data_dict.get("blood_pressure"))
+            skinThickness = float(data_dict.get("skin_thickness"))
+            insulin = float(data_dict.get("insulin"))
+            bmi = float(data_dict.get("bmi"))
+            diabetesPedigreeFunction = float(data_dict.get("diabetes_pedigree_function"))
 
             # Validate data
             if(pregnancies<0 and glucose<0 and bloodPressure<0 and skinThickness<0 and insulin<0 and bmi<0 and diabetesPedigreeFunction<0 and age<0):
@@ -44,5 +44,5 @@ class DiabetesService:
     def preprocessData(self, data):
         scaler = StandardScaler()
         scaler.fit_transform(data)
-        df = pd.DataFrame(data, columns=['Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age'])
+        df = pd.DataFrame(data, columns=['pregnancies','glucose','blood_pressure','skin_thickness','insulin','bmi','diabetes_pedigree_function','age'])
         return df
