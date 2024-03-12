@@ -33,7 +33,7 @@ class LiverService:
             df = self.preprocessData(data)
 
             # load model from pickle file
-            model_pkl_file = "./savedModels/liver-rf.pkl"
+            model_pkl_file = "./savedModels/liver-gbc.pkl"
             with open(model_pkl_file, 'rb') as file:  
                 model = pickle.load(file)
             
