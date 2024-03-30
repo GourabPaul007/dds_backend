@@ -1,5 +1,6 @@
 from services.liverService import LiverService
 from services.diabetesService import DiabetesService
+from services.kidneyService import KidneyService
 from flask import Flask, request, make_response, Response, jsonify
 
 app = Flask(__name__)
@@ -20,12 +21,22 @@ def diabetesCheck():
 
 @app.route("/liver/", methods=['POST'])
 def liverCheck():
-    data = request.args
+    args = request.args
+    print(args)
     d = LiverService()
-    liverResult = d.checkLiver(data)
+    liverResult = d.checkLiver(args)
     print(liverResult)
     return jsonify({'liver': liverResult})
 
+
+@app.route("/kidney/", methods=['POST'])
+def kidneyCheck():
+    args = request.args
+    print(args)
+    d = KidneyService()
+    kidneyResult = d.checkKidney(args)
+    print(kidneyResult)
+    return jsonify({'kidney': kidneyResult})
 
 if __name__ == "__main__":
     app.run(debug=True)
