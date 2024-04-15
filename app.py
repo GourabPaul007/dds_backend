@@ -1,3 +1,5 @@
+import numpy as np
+from services.brainTumorService import BrainTumorService
 from services.liverService import LiverService
 from services.diabetesService import DiabetesService
 from services.kidneyService import KidneyService
@@ -37,6 +39,14 @@ def kidneyCheck():
     kidneyResult = d.checkKidney(args)
     print(kidneyResult)
     return jsonify({'kidney': kidneyResult})
+
+@app.route("/braintumor/", methods=['POST'])
+def braintumorCheck():
+    # for postman
+    data = request.files.get("img")
+    bts = BrainTumorService()
+    btResult = bts.checkBrainTumor(data)
+    return jsonify({'brain_tumor': btResult})
 
 if __name__ == "__main__":
     app.run(debug=True)
