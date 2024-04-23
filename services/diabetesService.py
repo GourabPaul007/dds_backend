@@ -23,20 +23,23 @@ class DiabetesService:
 
             # Preprocess data
             # data = [[6,148,72,35,0,33.6,0.627,50]]
-            data = [[pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
+            # data = [[pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
+            data = [[pregnancies, glucose, bloodPressure, insulin, bmi, diabetesPedigreeFunction, age]]
             df = self.preprocessData(data)
 
             # load model from pickle file
-            model_pkl_file = "./savedModels/diabetes-rf.pkl"
+            # model_pkl_file = "./savedModels/diabetes-rf.pkl"
+            model_pkl_file = "./savedModels/DM_RandomF.pkl"
             with open(model_pkl_file, 'rb') as file:  
                 model = pickle.load(file)
             
-            # evaluate model
-            # y_predict = model.predict([[1,89,66,23,94,28.1,0.167,21]])
-            y_predict = model.predict(df)
-            print("y_predict: ", y_predict)
-            
-            return int(y_predict[0])
+                # evaluate model
+                # y_predict = model.predict([[1,89,66,23,94,28.1,0.167,21]])
+                print(df)
+                y_predict = model.predict(df)
+                print("y_predict: ", y_predict)
+                
+                return int(y_predict[0])
         
         except Exception as err:
             print(err)
@@ -44,5 +47,6 @@ class DiabetesService:
     def preprocessData(self, data):
         scaler = StandardScaler()
         scaler.fit_transform(data)
-        df = pd.DataFrame(data, columns=['pregnancies','glucose','blood_pressure','skin_thickness','insulin','bmi','diabetes_pedigree_function','age'])
+        # df = pd.DataFrame(data, columns=['pregnancies','glucose','blood_pressure','skin_thickness','insulin','bmi','diabetes_pedigree_function','age'])
+        df = pd.DataFrame(data, columns=["pregnancies","glucose","blood_pressure","insulin","bmi","diabetes_pedigree_function","age"])
         return df

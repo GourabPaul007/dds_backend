@@ -4,8 +4,10 @@ from services.liverService import LiverService
 from services.diabetesService import DiabetesService
 from services.kidneyService import KidneyService
 from flask import Flask, request, make_response, Response, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins="*")
 
 @app.route("/")
 def hello_world():
