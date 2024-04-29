@@ -38,15 +38,24 @@ class DiabetesService:
                 print(df)
                 y_predict = model.predict(df)
                 print("y_predict: ", y_predict)
+                probability = model.predict_proba(df)
+                d = {
+                    "diabetes": int(y_predict[0]),
+                    "probability": float(max(probability[0])*100)
+                }
                 
-                return int(y_predict[0])
+                return d
         
         except Exception as err:
             print(err)
     
     def preprocessData(self, data):
-        scaler = StandardScaler()
-        scaler.fit_transform(data)
-        # df = pd.DataFrame(data, columns=['pregnancies','glucose','blood_pressure','skin_thickness','insulin','bmi','diabetes_pedigree_function','age'])
-        df = pd.DataFrame(data, columns=["pregnancies","glucose","blood_pressure","insulin","bmi","diabetes_pedigree_function","age"])
-        return df
+        # sc = StandardScaler()
+        # data = scaler.fit_transform(data)
+        print(data)
+        with open('./scalers/scaler_dm.pkl','rb') as f:
+            sc = pickle.load(f)
+            data = sc.transform(data)
+            # df = pd.DataFrame(data, columns=['pregnancies','glucose','blood_pressure','skin_thickness','insulin','bmi','diabetes_pedigree_function','age'])
+            df = pd.DataFrame(data, columns=["pregnancies","glucose","blood_pressure","insulin","bmi","diabetes_pedigree_function","age"])
+            return df

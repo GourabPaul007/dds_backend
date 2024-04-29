@@ -56,12 +56,17 @@ class KidneyService:
             with open(model_pkl_file, 'rb') as file:  
                 model = pickle.load(file)
             
-            # evaluate model
-            # y_predict = model.predict([[1,89,66,23,94,28.1,0.167,21]])
-            y_predict = model.predict(df)
-            print("y_predict: ", y_predict)
-            
-            return int(y_predict[0])
+                # evaluate model
+                # y_predict = model.predict([[1,89,66,23,94,28.1,0.167,21]])
+                y_predict = model.predict(df)
+                print("y_predict: ", y_predict)
+                probability = model.predict_proba(df)
+                print("probability: ", probability)
+                d = {
+                    "ckd": int(y_predict[0]),
+                    "probability": float(max(probability[0])*100)
+                }
+                return d
         
         except Exception as err:
             print("err",err)

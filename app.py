@@ -21,7 +21,7 @@ def diabetesCheck():
     print(diabetesResult)
     # diabetesResult = modelCheck(Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age)
     # return f"params - {r}"
-    return jsonify({'diabetes': diabetesResult})
+    return jsonify(diabetesResult)
 
 @app.route("/liver/", methods=['POST'])
 def liverCheck():
@@ -40,7 +40,7 @@ def kidneyCheck():
     d = KidneyService()
     kidneyResult = d.checkKidney(args)
     print(kidneyResult)
-    return jsonify({'kidney': kidneyResult})
+    return jsonify(kidneyResult)
 
 @app.route("/braintumor/", methods=['POST'])
 def braintumorCheck():
