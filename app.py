@@ -1,4 +1,5 @@
 import numpy as np
+from services.alzheimersService import AlzheimersService
 from services.tuberculosisService import TuberculosisService
 from services.pneumoniaService import PneumoniaService
 from services.brainTumorService import BrainTumorService
@@ -54,7 +55,7 @@ def braintumorCheck():
 
 @app.route("/pneumonia/", methods=['POST'])
 def pneumoniaCheck():
-    # for postman
+    # bad output
     data = request.files.get("img")
     ps = PneumoniaService()
     pResult = ps.checkPneumonia(data)
@@ -64,8 +65,20 @@ def pneumoniaCheck():
 def tuberculosisCheck():
     # for postman
     data = request.files.get("img")
-    ps = TuberculosisService()
-    pResult = ps.checkTuberculosis(data)
-    return jsonify({'tuberculosis': pResult})
+    tb = TuberculosisService()
+    tbResult = tb.checkTuberculosis(data)
+    return jsonify(tbResult)
+
+@app.route("/alzheimers/", methods=['POST'])
+def alzheimersCheck():
+    # for postman
+    data = request.files.get("img")
+    al = AlzheimersService()
+    print("hello world")
+    print(data)
+    alResult = al.checkAlzheimers(data)
+    return jsonify(alResult)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

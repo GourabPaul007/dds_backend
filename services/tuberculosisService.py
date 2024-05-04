@@ -18,15 +18,18 @@ class TuberculosisService:
 
             # evaluate model
             y_predict = model.predict(imgArr[None,:,:])
-            pred = y_predict[0]
+            pred = y_predict[0][0]
             print("y_predict: ", pred)
-            btDict = {
+            tbDict = {
                 0: 'no_tuberculosis',
                 1: 'yes_tuberculosis',
             }
             res = 1 if pred>0.5 else 0
-                
-            return int(res)
+            result = {}
+            result['tb'] = tbDict[res]
+            result["probability"] = str(1-pred) if res==0 else str(pred)
+
+            return result
         
         except Exception as err:
             print(err)

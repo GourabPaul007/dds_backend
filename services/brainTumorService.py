@@ -21,15 +21,23 @@ class BrainTumorService:
             res = y_predict[0]
             print("y_predict: ", res)
             btDict = {
-                0: 'glioma',
-                1: 'meningioma',
-                2: 'notumor',
-                3: 'pituitary'
+                0: 'c0_glioma',
+                1: 'c1_meningioma',
+                2: 'c2_notumor',
+                3: 'c3_pituitary'
             }
-            argmax = np.argmax(res)
-            print(argmax, btDict[argmax])
+            btDictPercentage = {
+                # 'c0_glioma':1.0,
+                # 'c1_meningioma':0.0,
+                # 'c2_notumor':0.0,
+                # 'c3_pituitary':0.0,
+            }
+            for i in range(len(res)):
+                btDictPercentage[btDict[i]] = str(res[i])
+            result = {"output": btDict[np.argmax(res)], "probabilities": btDictPercentage}
+            print(result)
                 
-            return int(argmax)
+            return result
         
         except Exception as err:
             print(err)
