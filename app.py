@@ -1,4 +1,5 @@
 import numpy as np
+from services.parkinsonsService import ParkinsonsService
 from services.alzheimersService import AlzheimersService
 from services.tuberculosisService import TuberculosisService
 from services.pneumoniaService import PneumoniaService
@@ -44,6 +45,15 @@ def kidneyCheck():
     kidneyResult = d.checkKidney(args)
     print(kidneyResult)
     return jsonify(kidneyResult)
+
+@app.route("/parkinsons/", methods=['POST'])
+def parkinsonsCheck():
+    args = request.args
+    print(args)
+    d = ParkinsonsService()
+    parkinsonsResult = d.checkParkinsons(args)
+    print(parkinsonsResult)
+    return jsonify(parkinsonsResult)
 
 @app.route("/braintumor/", methods=['POST'])
 def braintumorCheck():
