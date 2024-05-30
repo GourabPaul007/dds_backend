@@ -1,5 +1,6 @@
 import numpy as np
-from services.breastCancer import BreastCancerService
+from services.breastCancerService import BreastCancerService
+from services.strokeService import StrokeService
 from services.parkinsonsService import ParkinsonsService
 from services.alzheimersService import AlzheimersService
 from services.tuberculosisService import TuberculosisService
@@ -94,6 +95,14 @@ def breastCancerCheck():
     print(args)
     bcResult = bc.checkBreastCancer(args)
     return jsonify(bcResult)
+
+@app.route("/stroke/", methods=['POST'])
+def strokeCheck():
+    args = request.args
+    ss = StrokeService()
+    print(args)
+    ssResult = ss.checkStroke(args)
+    return jsonify(ssResult)
 
 # TODO: Lung Cancer
 # TODO: Hepatitis C
