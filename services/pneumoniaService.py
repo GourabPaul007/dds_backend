@@ -20,10 +20,10 @@ class PneumoniaService:
             y_predict = model.predict(imgArr[None,:,:])
             pred = y_predict[0]
             print("y_predict: ", pred)
-            btDict = {
-                0: 'no_pneumonia',
-                1: 'yes_pneumonia',
-            }
+            # btDict = {
+            #     0: 'no_pneumonia',
+            #     1: 'yes_pneumonia',
+            # }
             res = 1 if pred>0.5 else 0
                 
             return int(res)
