@@ -46,14 +46,10 @@ class HeartDiseaseService:
     
     def preprocessData(self, data):
         from sklearn.preprocessing import LabelEncoder
+        df = pd.DataFrame(data, columns=["age","sex","chest_pain_type","resting_bp","cholesterol","fasting_bs","resting_ecg","max_hr","exercise_angina","oldpeak","st_slope",])
         le = LabelEncoder()
-        sex = le.fit_transform(sex)
-        chest_pain_type = le.fit_transform(chest_pain_type)
-        resting_ecg = le.fit_transform(resting_ecg)
-        exercise_angina = le.fit_transform(exercise_angina)
-        st_slope = le.fit_transform(st_slope)
-        df = pd.DataFrame(data, columns=["age","sex","chest_pain_type","resting_bp","cholesterol","fasting_bs",
-                                         "resting_ecg","max_hr","exercise_angina","oldpeak","st_slope",])
+        for col in ["sex","chest_pain_type","resting_ecg","exercise_angina","st_slope"]:
+            df[col] = le.fit_transform(df[col])
         return df
 
 
