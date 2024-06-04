@@ -8,16 +8,16 @@ class HeartDiseaseService:
             print("here")
             # Get data
             age = float(data_dict.get("age"))
-            sex = float(data_dict.get("sex"))
-            chest_pain_type = float(data_dict.get("chest_pain_type"))
+            sex = data_dict.get("sex")
+            chest_pain_type = data_dict.get("chest_pain_type")
             resting_bp = float(data_dict.get("resting_bp"))
             cholesterol = float(data_dict.get("cholesterol"))
             fasting_bs = float(data_dict.get("fasting_bs"))
-            resting_ecg = float(data_dict.get("resting_ecg"))
+            resting_ecg = data_dict.get("resting_ecg")
             max_hr = float(data_dict.get("max_hr"))
-            exercise_angina = float(data_dict.get("exercise_angina"))
+            exercise_angina = data_dict.get("exercise_angina")
             oldpeak = float(data_dict.get("oldpeak"))
-            st_slope = float(data_dict.get("st_slope"))
+            st_slope = data_dict.get("st_slope")
 
             # Preprocess data
             data = [[age,sex,chest_pain_type,resting_bp,cholesterol,fasting_bs,resting_ecg,max_hr,exercise_angina,oldpeak,st_slope]]
@@ -45,6 +45,13 @@ class HeartDiseaseService:
             print(err)
     
     def preprocessData(self, data):
+        from sklearn.preprocessing import LabelEncoder
+        le = LabelEncoder()
+        sex = le.fit_transform(sex)
+        chest_pain_type = le.fit_transform(chest_pain_type)
+        resting_ecg = le.fit_transform(resting_ecg)
+        exercise_angina = le.fit_transform(exercise_angina)
+        st_slope = le.fit_transform(st_slope)
         df = pd.DataFrame(data, columns=["age","sex","chest_pain_type","resting_bp","cholesterol","fasting_bs",
                                          "resting_ecg","max_hr","exercise_angina","oldpeak","st_slope",])
         return df
