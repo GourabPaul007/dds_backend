@@ -3,8 +3,6 @@ import pickle
 import pandas as pd
 
 class HeartDiseaseService:
-    # def __init__(self):
-
     def checkHeartDisease(self, data_dict):
         try:
             print("here")
@@ -49,28 +47,6 @@ class HeartDiseaseService:
     def preprocessData(self, data):
         df = pd.DataFrame(data, columns=["age","sex","chest_pain_type","resting_bp","cholesterol","fasting_bs",
                                          "resting_ecg","max_hr","exercise_angina","oldpeak","st_slope",])
-            # 119.992,
-            # 157.302,
-            # 74.997,
-            # 0.00784,
-            # 7e-05,
-            # 0.0037,
-            # 0.00554,
-            # 0.01109,
-            # 0.04374,
-            # 0.426,
-            # 0.02182,
-            # 0.0313,
-            # 0.02971,
-            # 0.06545,
-            # 0.02211,
-            # 21.033,
-            # 0.414783,
-            # 0.815285,
-            # -4.813031,
-            # 0.266482,
-            # 2.301442,
-            # 0.284654
         return df
 
 

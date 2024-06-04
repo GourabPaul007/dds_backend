@@ -34,15 +34,12 @@ class LungCancerService:
             snoring = float(data_dict.get("snoring"))
 
             # Preprocess data
-            # data = [[6,148,72,35,0,33.6,0.627,50]]
-            # data = [[pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
             data = [[age,gender,air_pollution,alcohol_use,dust_allergy,occupational_hazards,genetic_risk,chronic_lung_disease,
                      balanced_diet,obesity,smoking,passive_smoker,chest_pain,coughing_of_blood,fatigue,weight_loss,shortness_of_breath,
                      wheezing,swallowing_difficulty,clubbing_of_finger_nails,frequent_cold,dry_cough,snoring]]
             df = self.preprocessData(data)
 
             # load model from pickle file
-            # model_pkl_file = "./savedModels/diabetes-rf.pkl"
             model_pkl_file = "./savedModels/lc-lr.pkl"
             with open(model_pkl_file, 'rb') as file:  
                 model = pickle.load(file)
@@ -68,28 +65,6 @@ class LungCancerService:
                                          "genetic_risk","chronic_lung_disease","balanced_diet","obesity","smoking","passive_smoker",
                                          "chest_pain","coughing_of_blood","fatigue","weight_loss","shortness_of_breath","wheezing",
                                          "swallowing_difficulty","clubbing_of_finger_nails","frequent_cold","dry_cough","snoring"])
-            # 119.992,
-            # 157.302,
-            # 74.997,
-            # 0.00784,
-            # 7e-05,
-            # 0.0037,
-            # 0.00554,
-            # 0.01109,
-            # 0.04374,
-            # 0.426,
-            # 0.02182,
-            # 0.0313,
-            # 0.02971,
-            # 0.06545,
-            # 0.02211,
-            # 21.033,
-            # 0.414783,
-            # 0.815285,
-            # -4.813031,
-            # 0.266482,
-            # 2.301442,
-            # 0.284654
         return df
 
 

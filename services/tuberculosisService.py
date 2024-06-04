@@ -5,8 +5,6 @@ import os
 import cv2
 
 class TuberculosisService:
-    # def __init__(self):
-
     def checkTuberculosis(self, data):
         try:
             # Preprocess data

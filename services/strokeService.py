@@ -4,8 +4,6 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 class StrokeService:
-    # def __init__(self):
-
     def checkStroke(self, data_dict):
         try:
             print("in stroke checking")
@@ -21,21 +19,16 @@ class StrokeService:
             bmi = float(data_dict.get("bmi"))
             smoking_status = data_dict.get("smoking_status")
 
-
             # Preprocess data
-            # data = [[6,148,72,35,0,33.6,0.627,50]]
-            # data = [[pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
             data = [[gender,age,hypertension,heart_disease,ever_married,work_type,residence_type,avg_glucose_level,bmi,smoking_status]]
             df = self.preprocessData(data)
 
             # load model from pickle file
-            # model_pkl_file = "./savedModels/diabetes-rf.pkl"
             model_pkl_file = "./savedModels/stroke-rf.pkl"
             with open(model_pkl_file, 'rb') as file:  
                 model = pickle.load(file)
             
                 # evaluate model
-                # y_predict = model.predict([[1,89,66,23,94,28.1,0.167,21]])
                 print(df)
                 y_predict = model.predict(df)
                 print("y_predict: ", y_predict)

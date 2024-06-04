@@ -3,8 +3,6 @@ import tensorflow as tf
 import cv2
 
 class CovidService:
-    # def __init__(self):
-
     def checkCovid(self, data):
         try:
             # Preprocess data

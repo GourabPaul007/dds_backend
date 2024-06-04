@@ -55,8 +55,6 @@ def diabetesCheck():
     d = DiabetesService()
     diabetesResult = d.checkDiabetes(data)
     print(diabetesResult)
-    # diabetesResult = modelCheck(Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age)
-    # return f"params - {r}"
     return jsonify(diabetesResult)
 
 @app.route("/heartdisease/", methods=['POST'])
@@ -115,10 +113,6 @@ def tuberculosisCheck():
     tb = TuberculosisService()
     tbResult = tb.checkTuberculosis(data)
     return jsonify(tbResult)
-
-
-# TODO: Lung Cancer
-# TODO: Hepatitis C
 
 if __name__ == "__main__":
     app.run(debug=True)

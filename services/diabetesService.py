@@ -3,8 +3,6 @@ import pickle
 import pandas as pd
 
 class DiabetesService:
-    # def __init__(self):
-
     def checkDiabetes(self, data_dict):
         try:
             # Get data
@@ -22,19 +20,15 @@ class DiabetesService:
                 return -1
 
             # Preprocess data
-            # data = [[6,148,72,35,0,33.6,0.627,50]]
-            # data = [[pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi, diabetesPedigreeFunction, age]]
             data = [[pregnancies, glucose, bloodPressure, insulin, bmi, diabetesPedigreeFunction, age]]
             df = self.preprocessData(data)
 
             # load model from pickle file
-            # model_pkl_file = "./savedModels/diabetes-rf.pkl"
             model_pkl_file = "./savedModels/DM_RandomF.pkl"
             with open(model_pkl_file, 'rb') as file:  
                 model = pickle.load(file)
             
                 # evaluate model
-                # y_predict = model.predict([[1,89,66,23,94,28.1,0.167,21]])
                 print(df)
                 y_predict = model.predict(df)
                 print("y_predict: ", y_predict)
@@ -56,6 +50,5 @@ class DiabetesService:
         with open('./scalers/scaler_dm.pkl','rb') as f:
             sc = pickle.load(f)
             data = sc.transform(data)
-            # df = pd.DataFrame(data, columns=['pregnancies','glucose','blood_pressure','skin_thickness','insulin','bmi','diabetes_pedigree_function','age'])
             df = pd.DataFrame(data, columns=["pregnancies","glucose","blood_pressure","insulin","bmi","diabetes_pedigree_function","age"])
             return df

@@ -1,12 +1,8 @@
-import base64
 import numpy as np
 import tensorflow as tf
-import os
 import cv2
 
 class BrainTumorService:
-    # def __init__(self):
-
     def checkBrainTumor(self, data):
         try:
             # Preprocess data

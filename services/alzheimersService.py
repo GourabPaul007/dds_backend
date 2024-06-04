@@ -5,8 +5,6 @@ import os
 import cv2
 
 class AlzheimersService:
-    # def __init__(self):
-
     def checkAlzheimers(self, data):
         try:
             # Preprocess data
