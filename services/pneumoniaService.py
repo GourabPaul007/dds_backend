@@ -26,10 +26,10 @@ class PneumoniaService:
             }
             res = 1 if pred>0.5 else 0
             result = {}
-            result['pneumonia'] = pneumoniaDict[res]
+            result['pneumonia'] = res
             result["probability"] = str(1-pred) if res==0 else str(pred)
                 
-            return int(res)
+            return result
         
         except Exception as err:
             print(err)

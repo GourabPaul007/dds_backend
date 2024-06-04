@@ -97,7 +97,7 @@ def pneumoniaCheck():
     data = request.files.get("img")
     ps = PneumoniaService()
     pResult = ps.checkPneumonia(data)
-    return jsonify({'pneumonia': pResult})
+    return jsonify(pResult)
 
 @app.route("/stroke/", methods=['POST'])
 def strokeCheck():
