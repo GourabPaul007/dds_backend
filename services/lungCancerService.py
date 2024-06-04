@@ -51,7 +51,7 @@ class LungCancerService:
                 print("y_predict: ", y_predict)
                 probability = model.predict_proba(df)
                 d = {
-                    "parkinsons": int(y_predict[0]),
+                    "lung_cancer": int(y_predict[0]),
                     "probability": float(max(probability[0])*100)
                 }
                 
